@@ -1,0 +1,22 @@
+{
+    "name": "psg/psr-101",
+    "description": "PSR 15 remake into AppInterface",
+    "keywords": ["psr", "psr-101", "http", "http-message", "request", "response", "factory"],
+    "homepage": "https://github.com/php-sg/psr-100",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "PHP-SG",
+            "homepage": "http://php-sg.org/"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "psg/psr-100": "^0.1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Psg\\Http\\Server\\": "src/"
+        }
+    }
+}
