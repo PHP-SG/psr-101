@@ -3,12 +3,12 @@
 This is a rewrite of PSR 15, and an inclusion of PSR 17 into the AppInterface.  Various ideas went into this:
 
 -	Because the inteface method parameters must match (see PSR 100 README), and because PSR 101 middleware required the handler to be the extended version of the RequestionHandlerInterface, PSR 15 could not be extended for the middleware interfaces
-	-	Because middleware could not extend the PSR 15, to prevent confusion with the divergent se of `ServerRequestInterface`, RequestHandlerInterface and AppInterface do not extend PSR 15.
 -	To write standardized middleware, the method of using PSR 17 factories should be standardized
 	-	To do this, the AppInterface provides access to those factories
 -	Some middleware does not care about the App, it only wants a closure for a `next` call.  This type of middleware is separately provided for as `MiddlewareNextInterface`
--	Middleware is expected with AppInterface.  As such there are methods for adding, removing aand checking middleware.
-	-	These methods are the uncontexted `has`, `add`, `remove`.  The expectation here is that frameworks will generally not have these methods on their $app object (b/c they are too general), but that, it would made sense for these methods to refer to middleware.  Further, to add something like `addMiddleware` to the interface potential conflicts with existing methods on $app objects of frameworks.
+	-	Apps should handle this sort of middleware by detecting which type of middleware and applying correctly
+-	Middleware is expected with AppInterface.  As such there are methods for adding, removing and checking middleware.
+	-	These methods are the uncontexted `has`, `add`, `remove`.  The expectation here is that frameworks will generally not have these methods on their $app object (b/c they are too general), but that, it would make sense for these methods to refer to middleware.  Further, to add something like `addMiddleware` to the interface potentially conflicts with existing methods on $app objects of frameworks.
 
 
 
@@ -26,7 +26,7 @@ class App extends Psr100Factory implements AppInterface{
 	public function __construct(){
 		$this->middleware = new \SplObjectStorage();
 	}
-	public function handle(ServerRequestInterface $request): ResponseInterface {
+	public function handle(\Psr\Http\Message\ServerRequestInterface $request): ResponseInterface {
 		$middleware = $this->middleware->current();
 		$this->middleware->next();
 		return $middleware->process($request, $this);
