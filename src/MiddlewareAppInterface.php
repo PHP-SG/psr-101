@@ -8,7 +8,7 @@ use Psg\Http\Message\{ResponseInterface, RequestFactoryInterface,
     ResponseFactoryInterface, ServerRequestFactoryInterface, StreamFactoryInterface,
     UploadedFileFactoryInterface, UriFactoryInterface};
 
-interface AppInterface extends RequestFactoryInterface, ResponseFactoryInterface,
+interface MiddlewareAppInterface extends RequestFactoryInterface, ResponseFactoryInterface,
     ServerRequestFactoryInterface, StreamFactoryInterface, UploadedFileFactoryInterface, UriFactoryInterface,
     \Psr\Http\Server\RequestHandlerInterface
 {

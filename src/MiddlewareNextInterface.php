@@ -8,20 +8,16 @@ use Psg\Http\Message\ResponseInterface;
 use Psg\Http\Message\ServerRequestInterface;
 
 /**
- * Participant in processing a server request and response.
+ * Middleware that expects a `next` callback
  *
- * An HTTP middleware component participates in processing an HTTP message:
- * by acting on the request, generating the response, or forwarding the
- * request to a subsequent middleware and possibly acting on its response.
+ * Some middleware has been written with the expectation receiving a `next`
+ * callback.  This interface is available to accomodate such with the next
+ * callback receiving the request
  */
 interface MiddlewareNextInterface
 {
     /**
      * Process an incoming server request.
-     *
-     * Processes an incoming server request in order to produce a response.
-     * If unable to produce the response itself, it may delegate to the provided
-     * request handler to do so.
      */
     public function process(ServerRequestInterface $request, \Closure $next): ResponseInterface;
 }

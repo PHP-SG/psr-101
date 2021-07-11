@@ -1,3 +1,5 @@
+==== This is not a FIG PSR and has not undergone the rigorous process to become one ====
+
 # PSR 101
 
 This is a rewrite of PSR 15, and an inclusion of PSR 17 into the AppInterface.  Various ideas went into this:
@@ -18,10 +20,10 @@ Let's see a middleware based on this PSR 101
 ```php
 use Psg\Psr100\Factory\Psr100Factory;
 use Psg\Http\Message\{ResponseInterface, ServerRequestInterface};
-use Psg\Http\Server\{AppInterface, MiddlewareInterface, MiddlewareNextInterface};
+use Psg\Http\Server\{MiddlewareAppInterface, MiddlewareInterface, MiddlewareNextInterface};
 
 
-class App extends Psr100Factory implements AppInterface{
+class App extends Psr100Factory implements MiddlewareAppInterface{
 	public $middleware;
 	public function __construct(){
 		$this->middleware = new \SplObjectStorage();
