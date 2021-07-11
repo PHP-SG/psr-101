@@ -39,5 +39,5 @@ interface MiddlewareAppInterface extends RequestFactoryInterface, ResponseFactor
     /** params.
     < middleware > < MiddlewareInterface | MiddlewareNextInterface | closure | class identifier >
      */
-    public function has($middleware);
+    public function hasWare($middleware);
 }
